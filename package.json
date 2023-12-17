@@ -1,13 +1,18 @@
 {
   "name": "com.rockyhong.unitycomponentcache",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Unity Component Cache",
   "description": "A Unity package to simplify component reference caching using custom attributes.",
   "unity": "2019.1",
   "documentationUrl": "https://github.com/RockyHong/UnityComponentCache",
   "changelogUrl": "https://github.com/RockyHong/UnityComponentCache",
   "licensesUrl": "https://github.com/RockyHong/UnityComponentCache?tab=MIT-1-ov-file#readme",
-  "keywords": ["unity", "component", "cache", "attribute"],
+  "keywords": [
+    "unity",
+    "component",
+    "cache",
+    "attribute"
+  ],
   "author": {
     "name": "Rocky Hong",
     "email": "contact@rockyhong.com",
