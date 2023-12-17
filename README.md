@@ -1,8 +1,8 @@
-English | [繁體中文](https://github.com/RockyHong/UnityComponentCache/blob/main/README.zh-tw.md)
+English | [繁體中文](https://github.com/RockyHong/UnityGetComponentCache/blob/main/README.zh-tw.md)
 
-# Unity Component Cache Overview
+# Unity Get Component Cache Overview
 
-**Unity Component Cache** is designed to solve and optimize the efficient access to Unity Components.
+**Unity Get Component Cache** is designed to solve and optimize the efficient access to Unity Components.
 
 ## Problems Addressed:
 
@@ -65,89 +65,89 @@ RigidBody rigidbody
 }
 ```
 
-# Using Unity Component Cache:
+# Using Unity Get Component Cache:
 
 ## Installation
 
 In your Unity project, open 'Window -> Package Manager', and add a Package from the Git URL:
 
 ```csharp
-https://github.com/RockyHong/UnityComponentCache.git
+https://github.com/RockyHong/UnityGetComponentCache.git
 ```
 
 ## **Usage Method 1. One-Time Caching:**:
 
-Use the [ComponentCache] attribute to mark fields for caching. Initialize these caches in a one-time method like 'Awake'. This ensures no initialization is missed even when new fields are added.
+Use the [GetComponentCache] attribute to mark fields for caching. Initialize these caches in a one-time method like 'Awake'. This ensures no initialization is missed even when new fields are added.
 
 ```csharp
-using UnityComponentCache;
+using UnityGetComponentCache;
 
 public class ExampleBehaviour : MonoBehaviour
 {
-    [ComponentCache]
+    [GetComponentCache]
     Animator _animator;
 
-    [ComponentCache]
+    [GetComponentCache]
     Rigidbody _rigidbody;
 
     void Awake()
     {
         // Initialize cached components at once.
-        ComponentCacheInitializer.InitializeCaches(this);
+        GetComponentCacheInitializer.InitializeCaches(this);
     }
 }
 ```
 
 ## **Usage Method 2. Editor Pre-Configuration**:
 
-- Mark public fields or serializable private fields with [ComponentCache].
-- Use the 'Initialize Unity Component Caches' button in the GameObject Inspector to pre-fill values, simplifying pre-run setup.
+- Mark public fields or serializable private fields with [GetComponentCache].
+- Use the 'Initialize Unity GetComponent Caches' button in the GameObject Inspector to pre-fill values, simplifying pre-run setup.
 
 ```csharp
-using UnityComponentCache;
+using UnityGetComponentCache;
 
-// Use [ComponentCache] for public or [SerializeField] private fields.
+// Use [GetComponentCache] for public or [SerializeField] private fields.
 public class ExampleBehaviour : MonoBehaviour
 {
-    [ComponentCache]
+    [GetComponentCache]
     public Animator animator; // Public field.
 
-    [ComponentCache, SerializeField]
+    [GetComponentCache, SerializeField]
     private Rigidbody _rigidbody; // Private field.
 }
 ```
 
 - **Initialize Unity Component Caches' button status**:
-  - **Red**: All [ComponentCache] fields (public or with [SerializeField]) are cached and non-null.
-  - **Yellow**: Some [ComponentCache] fields are null.
-  - **Green**: All [ComponentCache] fields are null.
+  - **Red**: All [GetComponentCache] fields (public or with [SerializeField]) are cached and non-null.
+  - **Yellow**: Some [GetComponentCache] fields are null.
+  - **Green**: All [GetComponentCache] fields are null.
   - **\***: Indicates unsaved changes.
 
 ## **Usage Method 3. Runtime Lazy Caching**:
 
-Inherit from 'LazyComponentCacheBehaviour' to use 'GetCachedComponent<T>' for component retrieval. It automatically performs 'GetComponent' and caching when necessary.
+Inherit from 'LazyGetComponentCacheBehaviour' to use 'GetComponentCache<T>' for component retrieval. It automatically performs 'GetComponent' and caching when necessary.
 
 ```csharp
-using UnityComponentCache;
+using UnityGetComponentCache;
 
-public class ExampleBehaviour : LazyComponentCacheBehaviour
+public class ExampleBehaviour : LazyGetComponentCacheBehaviour
 {
-    Animator _animator => GetCachedComponent<Animator>();
-    Rigidbody _rigidbody => GetCachedComponent<Rigidbody>();
+    Animator _animator => GetComponentCache<Animator>();
+    Rigidbody _rigidbody => GetComponentCache<Rigidbody>();
 }
 ```
 
 or
 
 ```csharp
-using UnityComponentCache;
+using UnityGetComponentCache;
 
-public class ExampleBehaviour : LazyComponentCacheBehaviour
+public class ExampleBehaviour : LazyGetComponentCacheBehaviour
 {
     void Foo()
     {
-        var animator = GetCachedComponent<Animator>();
-        var rigidbody = GetCachedComponent<Rigidbody>();
+        var animator = GetComponentCache<Animator>();
+        var rigidbody = GetComponentCache<Rigidbody>();
         // Use components at ease without worring performance.
     }
 }
@@ -164,10 +164,10 @@ Consider combining with [RequireComponent] to ensure essential components are al
 [RequireComponent(typeof(Animator))]
 public class ExampleBehaviour : MonoBehaviour
 {
-    [ComponentCache]
+    [GetComponentCache]
     Animator _animator;
 
-    [ComponentCache]
+    [GetComponentCache]
     Rigidbody _rigidbody;
 }
 ```
