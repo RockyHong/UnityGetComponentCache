@@ -5,12 +5,12 @@
 Unity Component Cache is designed to address a specific challenge faced in game development: the need for efficient component access.
 
 ## Installation and Setup
-
-**Installation**:
-
-1. Unity Package Manager:
-   In your Unity project, go to Window -> Package Manager.
-   Add Package from Git URL: https://github.com/RockyHong/UnityComponentCache.git
+In your Unity project, go to Window -> Package Manager.
+Add Package from Git URL:
+   
+   ```csharp
+   https://github.com/RockyHong/UnityComponentCache.git
+   ```
 
 ### The Challenge Trying to Solve:
 
