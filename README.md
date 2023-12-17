@@ -120,9 +120,9 @@ public class ExampleBehaviour : MonoBehaviour
 ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/1333920a-124e-4c2e-b977-5cfbe36743af) ➜ ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/35b8bf85-765b-4366-b823-d7eca00f09d0)
 
 - **Initialize Get Component Caches' button status**:
-  - **Red**: All [GetComponentCache] fields (public or with [SerializeField]) are cached and non-null.
+  - **Green**: All [GetComponentCache] fields (public or with [SerializeField]) are cached and non-null.
   - **Yellow**: Some [GetComponentCache] fields are null.
-  - **Green**: All [GetComponentCache] fields are null.
+  - **Red**: All [GetComponentCache] fields are null.
   - **\***: Indicates unsaved changes.
 
 ## **Usage 3. Runtime Lazy Caching**:
