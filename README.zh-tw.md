@@ -114,6 +114,7 @@ public class ExampleBehaviour : MonoBehaviour
     private Rigidbody _rigidbody; // 可序列化的私有欄位.
 }
 ```
+![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/1333920a-124e-4c2e-b977-5cfbe36743af) ➜ ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/35b8bf85-765b-4366-b823-d7eca00f09d0)
 
 - **'Initialize Get Component Caches'按鈕狀態**：
   - **綠色**：所有被標記 [GetComponentCache] 欄位（公共或帶有[SerializeField]）都已快取且非 null。
