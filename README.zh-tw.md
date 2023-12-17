@@ -1,6 +1,7 @@
-# 簡介
+[English](https://github.com/RockyHong/UnityGetComponentCache/blob/main/README.md) | 繁體中文
+# Unity Get Component Cache 簡介
 
-**Unity Component Cache** 旨在解決與優化 Unity 有效存取 Component 的需求。
+**Unity Get Component Cache** 旨在解決與優化 Unity 有效存取 Component 的需求。
 
 ## 嘗試解決的問題：
 
@@ -70,28 +71,28 @@ RigidBody rigidbody
 在 Unity 專案中，打開 'Window -> Package Manager'，從 Git URL 新增 Package：
 
 ```csharp
-https://github.com/RockyHong/UnityComponentCache.git
+https://github.com/RockyHong/UnityGetComponentCache.git
 ```
 
 ## **使用方法 1. 一次性快取**：
 
-使用 [ComponentCache] 的 Attribute 標記需要快取的欄位，然後在一次性的方法中初始化這些快取，例如說 'Awake' 。這樣即使未來新增新的欄位，只要有標記 Attribute，就不怕遺漏初始化。
+使用 [GetComponentCache] 的 Attribute 標記需要快取的欄位，然後在一次性的方法中初始化這些快取，例如說 'Awake' 。這樣即使未來新增新的欄位，只要有標記 Attribute，就不怕遺漏初始化。
 
 ```csharp
-using UnityComponentCache;
+using UnityGetComponentCache;
 
 public class ExampleBehaviour : MonoBehaviour
 {
-    [ComponentCache]
+    [GetComponentCache]
     Animator _animator;
 
-    [ComponentCache]
+    [GetComponentCache]
     Rigidbody _rigidbody;
 
     void Awake()
     {
         // 一次性初始化快取元件。
-        ComponentCacheInitializer.InitializeCaches(this);
+        GetComponentCacheInitializer.InitializeCaches(this);
     }
 }
 ```
@@ -101,50 +102,50 @@ public class ExampleBehaviour : MonoBehaviour
 - 在 GameObject 的檢視介面 (Inspector) 中點擊 'Initialize Unity Component Caches'按鈕，可以將所有標記 [ComponentCache] 且可取用的欄位進行預先 GetComponent 並填入值，簡化運行前的設置。
 
 ```csharp
-using UnityComponentCache;
+using UnityGetComponentCache;
 
-// 使用[ComponentCache]標記 public 公有或 [SerializeField] 可序列化的私有欄位。
+// 使用[GetComponentCache]標記 public 公有或 [SerializeField] 可序列化的私有欄位。
 public class ExampleBehaviour : MonoBehaviour
 {
-    [ComponentCache]
+    [GetComponentCache]
     public Animator animator; // 公有欄位.
 
-    [ComponentCache, SerializeField]
+    [GetComponentCache, SerializeField]
     private Rigidbody _rigidbody; // 可序列化的私有欄位.
 }
 ```
 
 - **按鈕狀態**：
-  - **綠色**：所有被標記 [ComponentCache] 欄位（公共或帶有[SerializeField]）都已快取且非 null。
-  - **黃色**：部分被標記 [ComponentCache] 欄位為 null。
-  - **紅色**：所有被標記 [ComponentCache] 欄位都為 null。
+  - **綠色**：所有被標記 [GetComponentCache] 欄位（公共或帶有[SerializeField]）都已快取且非 null。
+  - **黃色**：部分被標記 [GetComponentCache] 欄位為 null。
+  - **紅色**：所有被標記 [GetComponentCache] 欄位都為 null。
   - **\***：表示有未儲存的更動。
 
 ## **使用方法 3. Runtime 延時快取**：
 
-繼承 LazyComponentCacheBehaviour，便可以使用 'GetCachedComponent<T>' 來取得 Component。它將會自動在必要的時候進行 GetComponent 與快取。
+繼承 LazyGetComponentCacheBehaviour，便可以使用 'GetComponentCache<T>' 來取得 Component。它將會自動在必要的時候進行 GetComponent 與快取。
 
 ```csharp
 using UnityComponentCache;
 
-public class ExampleBehaviour : LazyComponentCacheBehaviour
+public class ExampleBehaviour : LazyGetComponentCacheBehaviour
 {
-    Animator _animator => GetCachedComponent<Animator>();
-    Rigidbody _rigidbody => GetCachedComponent<Rigidbody>();
+    Animator _animator => GetComponentCache<Animator>();
+    Rigidbody _rigidbody => GetComponentCache<Rigidbody>();
 }
 ```
 
 或
 
 ```csharp
-using UnityComponentCache;
+using UnityGetComponentCache;
 
-public class ExampleBehaviour : LazyComponentCacheBehaviour
+public class ExampleBehaviour : LazyGetComponentCacheBehaviour
 {
     void Foo()
     {
-        var animator = GetCachedComponent<Animator>();
-        var rigidbody = GetCachedComponent<Rigidbody>();
+        var animator = GetComponentCache<Animator>();
+        var rigidbody = GetComponentCache<Rigidbody>();
         // 隨意使用 Component 而不用擔心效能問題。
     }
 }
@@ -161,10 +162,10 @@ public class ExampleBehaviour : LazyComponentCacheBehaviour
 [RequireComponent(typeof(Animator))]
 public class ExampleBehaviour : MonoBehaviour
 {
-    [ComponentCache]
+    [GetComponentCache]
     Animator _animator;
 
-    [ComponentCache]
+    [GetComponentCache]
     Rigidbody _rigidbody;
 }
 ```
