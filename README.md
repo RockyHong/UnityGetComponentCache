@@ -75,7 +75,7 @@ In your Unity project, open 'Window -> Package Manager', and add a Package from 
 https://github.com/RockyHong/UnityGetComponentCache.git
 ```
 
-## **Usage Method 1. One-Time Caching**:
+## **Usage 1. One-Time Caching**:
 
 Use the [GetComponentCache] attribute to mark fields for caching. Initialize these caches in a one-time method like 'Awake'. This ensures no initialization is missed even when new fields are added.
 
@@ -98,7 +98,7 @@ public class ExampleBehaviour : MonoBehaviour
 }
 ```
 
-## **Usage Method 2. Editor Pre-Configuration**:
+## **Usage 2. Editor Pre-Configuration**:
 
 - Mark public fields or serializable private fields with [GetComponentCache].
 - Use the 'Initialize Get Component Caches' button in the GameObject Inspector to pre-fill values, simplifying pre-run setup.
@@ -117,13 +117,15 @@ public class ExampleBehaviour : MonoBehaviour
 }
 ```
 
+![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/1333920a-124e-4c2e-b977-5cfbe36743af) ➜ ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/35b8bf85-765b-4366-b823-d7eca00f09d0)
+
 - **Initialize Get Component Caches' button status**:
   - **Red**: All [GetComponentCache] fields (public or with [SerializeField]) are cached and non-null.
   - **Yellow**: Some [GetComponentCache] fields are null.
   - **Green**: All [GetComponentCache] fields are null.
   - **\***: Indicates unsaved changes.
 
-## **Usage Method 3. Runtime Lazy Caching**:
+## **Usage 3. Runtime Lazy Caching**:
 
 Inherit from 'LazyGetComponentCacheBehaviour' to use 'GetComponentCache<T>' for component retrieval. It automatically performs 'GetComponent' and caching when necessary.
 
