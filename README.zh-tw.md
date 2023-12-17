@@ -4,7 +4,7 @@
 
 ## 嘗試解決的問題：
 
-- 在 Update 中高頻率使用 'GetComponent' 可能會顯著降低效能。
+- 在 Update 中高頻率的使用 'GetComponent' 可能會顯著降低效能。
 
 ```csharp
 void Update()
@@ -14,7 +14,7 @@ void Update()
 }
 ```
 
-- 在 'Awake' 或 'Start' 方法中使用 'GetComponent' 來一次性取得所有 Component 欄位的值，可能會讓程式碼變得冗長與混亂。新增欄位的時候，也容易會忘記要在補上初始化。
+- 在 'Awake' 或 'Start' 方法中使用 'GetComponent' 來一次性取得所有 Component 欄位的值，可能會讓程式碼變得冗長與混亂。新增欄位的時候，也很容易忘記要補上初始化。
 
 ```csharp
 Animator animator;
@@ -33,7 +33,7 @@ void Awake()
 }
 ```
 
-- 使用屬性實作 Lazy Cache 可能會有冗長與重複的程式碼，增加不必要的複雜性。
+- 逐一實作延時快取可能會有冗長與重複的程式碼，增加不必要的複雜性。
 
 ```csharp
 Animator _animator;
@@ -65,7 +65,7 @@ RigidBody rigidbody
 
 # 使用 Unity Component Cache：
 
-## **安裝和設置**：
+## **安裝**：
 
 在 Unity 專案中，打開 'Window -> Package Manager'，從 Git URL 新增 Package：
 
@@ -73,7 +73,7 @@ RigidBody rigidbody
 https://github.com/RockyHong/UnityComponentCache.git
 ```
 
-## **1. 一次性快取**：
+## **使用方法 1. 一次性快取**：
 
 使用 [ComponentCache] 的 Attribute 標記需要快取的欄位，然後在一次性的方法中初始化這些快取，例如說 'Awake' 。這樣即使未來新增新的欄位，只要有標記 Attribute，就不怕遺漏初始化。
 
@@ -96,9 +96,9 @@ public class ExampleBehaviour : MonoBehaviour
 }
 ```
 
-## **2. 編輯器中儲存**：
+## **使用方法 2. 編輯器中預先取值**：
 
-- 在 GameObject 的檢視介面 (Inspector) 中點擊 'Initialize Unity Component Caches'按鈕，可以將所有標記[ComponentCache]且可取用的欄位進行預先 GetComponent 並填入值，簡化運行前的設置。
+- 在 GameObject 的檢視介面 (Inspector) 中點擊 'Initialize Unity Component Caches'按鈕，可以將所有標記 [ComponentCache] 且可取用的欄位進行預先 GetComponent 並填入值，簡化運行前的設置。
 
 ```csharp
 using UnityComponentCache;
@@ -114,13 +114,13 @@ public class ExampleBehaviour : MonoBehaviour
 }
 ```
 
-- **按鈕狀態：**:
-  - **綠色**: 所有被標記 [ComponentCache] 欄位（公共或帶有[SerializeField]）都已快取且非 null。
-  - **黃色**: 部分被標記 [ComponentCache] 欄位為 null。
-  - **紅色**: 所有被標記 [ComponentCache] 欄位都為 null。
-  - **\***: 表示有未儲存的更動。
+- **按鈕狀態**：
+  - **綠色**：所有被標記 [ComponentCache] 欄位（公共或帶有[SerializeField]）都已快取且非 null。
+  - **黃色**：部分被標記 [ComponentCache] 欄位為 null。
+  - **紅色**：所有被標記 [ComponentCache] 欄位都為 null。
+  - **\***：表示有未儲存的更動。
 
-## **3. Runtime 延遲快取**：
+## **使用方法 3. Runtime 延時快取**：
 
 繼承 LazyComponentCacheBehaviour，便可以使用 'GetCachedComponent<T>' 來取得 Component。它將會自動在必要的時候進行 GetComponent 與快取。
 
@@ -150,7 +150,7 @@ public class ExampleBehaviour : LazyComponentCacheBehaviour
 }
 ```
 
-# **額外想法**
+## **額外想法**
 
 ## 使用 [RequireComponent] 屬性：
 
@@ -166,6 +166,5 @@ public class ExampleBehaviour : MonoBehaviour
 
     [ComponentCache]
     Rigidbody _rigidbody;
-    // 實現細節...
 }
 ```

@@ -1,27 +1,27 @@
-# Introduction
+# Unity Component Cache Overview
 
-**Unity Component Cache** is designed to address a specific challenge faced in game development: the need for efficient component access.
+**Unity Component Cache** is designed to solve and optimize the efficient access to Unity Components.
 
-## Identifying Common Challenges:
+## Problems Addressed:
 
-- Regular use of 'GetComponent' in Update loops can significantly degrade performance, a common issue in Unity development.
+- Frequent use of 'GetComponent' can significantly reduce performance.
 
 ```csharp
 void Update()
 {
     var rigidbody = GetComponent<Rigidbody>();
-    // Using rigidbody for some operations...
+    // Performing some operations with rigidbody...
 }
 ```
 
-- The standard practice of multiple 'GetComponent' calls in 'Awake' or 'Start' methods leads to redundant and cluttered code.
+- Using 'GetComponent' in 'Awake' or 'Start' methods for one-time initialization of all component fields might lead to lengthy and confusing code. It's also easy to forget to initialize new fields.
 
 ```csharp
 Animator animator;
 Rigidbody rigidbody;
 Collider collider;
 AudioSource audioSource;
-// More GetComponent...
+// Many other fields...
 
 void Awake()
 {
@@ -33,7 +33,7 @@ void Awake()
 }
 ```
 
-- Implementing lazy-loading for components often results in lengthy and repetitive code, adding unnecessary complexity.
+- Implementing lazy-loading with properties might lead to verbose and redundant code.
 
 ```csharp
 Animator _animator;
@@ -65,9 +65,17 @@ RigidBody rigidbody
 
 # Using Unity Component Cache:
 
-## **1. Cache Manually**:
+## Installation
 
-Use the [ComponentCache] attribute to mark components for caching. Initialize these caches efficiently with 'ComponentCacheInitializer.InitializeCaches()' in essential methods like 'Awake'.
+In your Unity project, open 'Window -> Package Manager', and add a Package from the Git URL:
+
+```csharp
+https://github.com/RockyHong/UnityComponentCache.git
+```
+
+## **Usage Method 1. One-Time Caching:**:
+
+Use the [ComponentCache] attribute to mark fields for caching. Initialize these caches in a one-time method like 'Awake'. This ensures no initialization is missed even when new fields are added.
 
 ```csharp
 using UnityComponentCache;
@@ -88,9 +96,10 @@ public class ExampleBehaviour : MonoBehaviour
 }
 ```
 
-## **2. Cache In Editor**:
+## **Usage Method 2. Editor Pre-Configuration**:
 
-- Click 'Initialize Unity Component Caches' button in the GameObject Inspector to cache components marked with [ComponentCache], simplifying pre-runtime setup.
+- Mark public fields or serializable private fields with [ComponentCache].
+- Use the 'Initialize Unity Component Caches' button in the GameObject Inspector to pre-fill values, simplifying pre-run setup.
 
 ```csharp
 using UnityComponentCache;
@@ -106,14 +115,15 @@ public class ExampleBehaviour : MonoBehaviour
 }
 ```
 
-- **'Initialize Unity Component Caches' button status**:
-   - **Red**: All [ComponentCache] fields (public or with [SerializeField]) are cached and non-null.
-   - **Yellow**: Some [ComponentCache] fields are null.
-   - **Green**: All [ComponentCache] fields are null.
-   - **\***: Indicates unsaved changes.
+- **Initialize Unity Component Caches' button status**:
+  - **Red**: All [ComponentCache] fields (public or with [SerializeField]) are cached and non-null.
+  - **Yellow**: Some [ComponentCache] fields are null.
+  - **Green**: All [ComponentCache] fields are null.
+  - **\***: Indicates unsaved changes.
 
-## **3. Lazy Cache Runtime**: 
-Adopt LazyComponentCacheBehaviour for on-demand component caching. This approach optimizes performance by loading caching components only when needed.
+## **Usage Method 3. Runtime Lazy Caching**:
+
+Inherit from 'LazyComponentCacheBehaviour' to use 'GetCachedComponent<T>' for component retrieval. It automatically performs 'GetComponent' and caching when necessary.
 
 ```csharp
 using UnityComponentCache;
@@ -141,20 +151,11 @@ public class ExampleBehaviour : LazyComponentCacheBehaviour
 }
 ```
 
-# Installation and Setup
-
-In your Unity project, go to 'Window -> Package Manager'.
-Add Package from Git URL:
-
-   ```csharp
-   https://github.com/RockyHong/UnityComponentCache.git
-   ```
-
-# **Additional Reminder**
+## **Additional Note**
 
 ### Using [RequireComponent] Attribute:
 
-Consider pairing [RequireComponent] with Component Cache for optimal component management. It's a helpful strategy to ensure necessary components are always included, enhancing the effectiveness of the caching mechanism.
+Consider combining with [RequireComponent] to ensure essential components are always included in the GameObject, enhancing the caching mechanism's effectiveness.
 
 ```csharp
 [RequireComponent(typeof(Rigidbody))]
@@ -166,6 +167,5 @@ public class ExampleBehaviour : MonoBehaviour
 
     [ComponentCache]
     Rigidbody _rigidbody;
-    // Implementation details...
 }
 ```
