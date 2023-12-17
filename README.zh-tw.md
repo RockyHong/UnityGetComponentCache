@@ -153,7 +153,7 @@ public class ExampleBehaviour : LazyGetComponentCacheBehaviour
 
 ## **額外想法**
 
-## 使用 [RequireComponent] 屬性：
+#### 使用 [RequireComponent] 屬性：
 
 可以考慮與 [RequireComponent] 結合使用，確保必要的 Component 始終包含於該 GameObject 中，增強快取機制的有效性。
 
