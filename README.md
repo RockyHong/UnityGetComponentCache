@@ -1,3 +1,5 @@
+English | [繁體中文](https://github.com/RockyHong/UnityComponentCache/blob/main/README.zh-tw.md)
+
 # Unity Component Cache Overview
 
 **Unity Component Cache** is designed to solve and optimize the efficient access to Unity Components.
