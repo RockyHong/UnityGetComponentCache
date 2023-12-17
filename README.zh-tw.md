@@ -99,7 +99,7 @@ public class ExampleBehaviour : MonoBehaviour
 
 ## **使用方法 2. 編輯器中預先取值**：
 
-- 在 GameObject 的檢視介面 (Inspector) 中點擊 'Initialize Unity Component Caches'按鈕，可以將所有標記 [ComponentCache] 且可取用的欄位進行預先 GetComponent 並填入值，簡化運行前的設置。
+- 在 GameObject 的檢視介面 (Inspector) 中點擊 'Initialize Unity Component Caches'按鈕，可以將所有標記 [GetComponentCache] 且可取用的欄位進行預先 GetComponent 並填入值，簡化運行前的設置。
 
 ```csharp
 using UnityGetComponentCache;
@@ -126,7 +126,7 @@ public class ExampleBehaviour : MonoBehaviour
 繼承 LazyGetComponentCacheBehaviour，便可以使用 'GetComponentCache<T>' 來取得 Component。它將會自動在必要的時候進行 GetComponent 與快取。
 
 ```csharp
-using UnityComponentCache;
+using UnityGetComponentCache;
 
 public class ExampleBehaviour : LazyGetComponentCacheBehaviour
 {
