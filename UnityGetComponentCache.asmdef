@@ -1,6 +1,6 @@
 {
     "name": "UnityGetComponentCache",
-    "rootNamespace": "",
+    "rootNamespace": "UnityGetComponentCache",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
