@@ -1,17 +1,11 @@
 using UnityGetComponentCache;
 using UnityEngine;
 
-public class ComponentCacheDemo : MonoBehaviour
+public class RuntimeLazyGetCachingDemo : LazyGetComponentCacheBehaviour
 {
-    [GetComponentCache] private Transform cachedTransform;
-    [GetComponentCache] private TextMesh cachedTextMesh;
-
-    private void Awake()
-    {
-        // Demo: Initialize the caches manually
-        GetComponentCacheInitializer.InitializeCaches(this);
-    }
-
+    private Transform cachedTransform => GetComponentCache<Transform>();
+    private TextMesh cachedTextMesh => GetComponentCache<TextMesh>();
+    
     private void Update()
     {
         float someValue = Mathf.Sin(Time.time);
@@ -26,4 +20,4 @@ public class ComponentCacheDemo : MonoBehaviour
         cachedTextMesh.text = $"{name} : {someValue:F2}";
         cachedTextMesh.color=Color.Lerp(Color.red, Color.blue, someValue);
     }
-}
+}    

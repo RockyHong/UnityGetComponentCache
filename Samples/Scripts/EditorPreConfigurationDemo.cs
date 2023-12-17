@@ -1,12 +1,12 @@
 using UnityGetComponentCache;
 using UnityEngine;
 
-public class ComponentCacheInEditorDemo : MonoBehaviour
+public class EditorPreConfigurationDemo : MonoBehaviour
 {
     // Don't forget to publicize the fields you want to cache, or serialize them
-    // and mark them with the [UnityComponentCache] attribute
+    // and mark them with the [GetComponentCache] attribute
     
-    // Demo: Cache a transform and a text mesh
+    // Demo: Cache a Transform and a TextMesh
     [GetComponentCache] public Transform publicCachedTransform;
     [SerializeField, GetComponentCache] private TextMesh privateCachedTextMesh;
 

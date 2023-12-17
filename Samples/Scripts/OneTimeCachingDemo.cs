@@ -1,14 +1,14 @@
 using UnityGetComponentCache;
 using UnityEngine;
 
-public class ComponentCacheDemo : MonoBehaviour
+public class OneTimeCachingDemo : MonoBehaviour
 {
     [GetComponentCache] private Transform cachedTransform;
     [GetComponentCache] private TextMesh cachedTextMesh;
 
     private void Awake()
     {
-        // Demo: Initialize the caches manually
+        // Demo: Initialize the caches
         GetComponentCacheInitializer.InitializeCaches(this);
     }
 

@@ -1,7 +1,7 @@
-namespace UnityComponentCache
+namespace UnityGetComponentCache
 {
     [System.AttributeUsage(System.AttributeTargets.Field)]
-    public class ComponentCacheAttribute : System.Attribute
+    public class GetComponentCacheAttribute : System.Attribute
     {
     }
 }

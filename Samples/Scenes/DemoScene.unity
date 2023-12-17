@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 280278663}
   - component: {fileID: 280278665}
   m_Layer: 0
-  m_Name: ComponentCacheDemo
+  m_Name: OneTimeCachingDemo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +165,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280278661}
-  m_Text: ComponentCache
+  m_Text: One Time Caching
   m_OffsetZ: 0
   m_CharacterSize: 0.3
   m_LineSpacing: 1
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 280278661}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af80bf5918b195645b8244f6d8313a52, type: 3}
+  m_Script: {fileID: 11500000, guid: 104469911b96505409637bc8ef121ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &527628315
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 716047936}
   - component: {fileID: 716047938}
   m_Layer: 0
-  m_Name: LazyComponentCacheBehaviourDemo
+  m_Name: RuntimeLazyGetCachingDemo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,7 +309,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716047934}
-  m_Text: LazyComponentCacheBehaviour
+  m_Text: RuntimeLazyGetCachingDemo.cs
   m_OffsetZ: 0
   m_CharacterSize: 0.3
   m_LineSpacing: 1
@@ -374,7 +374,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 716047934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55a7d0a08db08e84ab549d6ec41921bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 548091d4cf5af484b86d985230ac182d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &963194225
@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 1994703098}
   - component: {fileID: 1994703100}
   m_Layer: 0
-  m_Name: ComponentCacheInEditorDemo
+  m_Name: EditorPreConfigurationDemo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -511,7 +511,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994703096}
-  m_Text: 'ComponentCacheInEditor
+  m_Text: 'EditorPreConfigurationDemo
 
     <i><color=red><size=10>Press the <b>''Initialize''</b>
     button in inspector first
@@ -581,7 +581,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1994703096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f2a5cacbb381f941835d1e19fbfce1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 048720abbbea0234aaabe61c88a46b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   publicCachedTransform: {fileID: 0}
