@@ -1,22 +1,10 @@
-# Unity Component Cache
+# Introduction
 
-## Introduction
+**Unity Component Cache** is designed to address a specific challenge faced in game development: the need for efficient component access.
 
-Unity Component Cache is designed to address a specific challenge faced in game development: the need for efficient component access.
+## Identifying Common Challenges:
 
-## Installation and Setup
-
-In your Unity project, go to Window -> Package Manager.
-Add Package from Git URL:
-
-```csharp
-https://github.com/RockyHong/UnityComponentCache.git
-```
-
-### Identifying Common Challenges:
-
-1. **Frequent GetComponent Usage**:
-   Regular use of 'GetComponent' in Update loops can significantly degrade performance, a common issue in Unity development.
+- Regular use of 'GetComponent' in Update loops can significantly degrade performance, a common issue in Unity development.
 
 ```csharp
 void Update()
@@ -26,24 +14,26 @@ void Update()
 }
 ```
 
-2. **Redundant Manual Caching**:
-   The standard practice of multiple 'GetComponent' calls in 'Awake' or 'Start' methods leads to redundant and cluttered code.
+- The standard practice of multiple 'GetComponent' calls in 'Awake' or 'Start' methods leads to redundant and cluttered code.
 
 ```csharp
 Animator animator;
 Rigidbody rigidbody;
+Collider collider;
+AudioSource audioSource;
 // More GetComponent...
 
 void Awake()
 {
-    animator = GetComponent<Animator>();
-    rigidbody = GetComponent<Rigidbody>();
+   animator = GetComponent<Animator>();
+   rigidbody = GetComponent<Rigidbody>();
+   collider = GetComponent<Collider>();
+   audioSource = GetComponent<AudioSource>();
     // More GetComponent calls...
 }
 ```
 
-3. **Verbose Lazy Initialization**:
-   Implementing lazy-loading for components often results in lengthy and repetitive code, adding unnecessary complexity.
+- Implementing lazy-loading for components often results in lengthy and repetitive code, adding unnecessary complexity.
 
 ```csharp
 Animator _animator;
@@ -73,9 +63,9 @@ RigidBody rigidbody
 }
 ```
 
-### Using Unity Component Cache:
+# Using Unity Component Cache:
 
-#### **Cache Manually**:
+## **1. Cache Manually**:
 
 Use the [ComponentCache] attribute to mark components for caching. Initialize these caches efficiently with 'ComponentCacheInitializer.InitializeCaches()' in essential methods like 'Awake'.
 
@@ -95,17 +85,12 @@ public class ExampleBehaviour : MonoBehaviour
         // Initialize cached components at once.
         ComponentCacheInitializer.InitializeCaches(this);
     }
-
-    void Update()
-    {
-        // Use animator and _rigidbody without GetComponent.
-    }
 }
 ```
 
-#### **Cache In Editor**:
+## **2. Cache In Editor**:
 
-1. Click 'Initialize Unity Component Caches' in the GameObject Inspector to cache components marked with [ComponentCache], simplifying pre-runtime setup.
+- Click 'Initialize Unity Component Caches' button in the GameObject Inspector to cache components marked with [ComponentCache], simplifying pre-runtime setup.
 
 ```csharp
 using UnityComponentCache;
@@ -118,35 +103,25 @@ public class ExampleBehaviour : MonoBehaviour
 
     [ComponentCache, SerializeField]
     private Rigidbody _rigidbody; // Private field.
-
-    void Update()
-    {
-        // Use animator and _rigidbody without GetComponent.
-    }
 }
 ```
 
-2. Button Status Guide:
+- **'Initialize Unity Component Caches' button status**:
+   - **Red**: All [ComponentCache] fields (public or with [SerializeField]) are cached and non-null.
+   - **Yellow**: Some [ComponentCache] fields are null.
+   - **Green**: All [ComponentCache] fields are null.
+   - **\***: Indicates unsaved changes.
 
-- Red: All [ComponentCache] fields (public or with [SerializeField]) are cached and non-null.
-- Yellow: Some [ComponentCache] fields are null.
-- Green: All [ComponentCache] fields are null.
-- '\*': Indicates unsaved changes.
-
-#### **Lazy Cache Runtime**: Adopt LazyComponentCacheBehaviour for on-demand component caching. This approach optimizes performance by loading caching components only when needed.
+## **3. Lazy Cache Runtime**: 
+Adopt LazyComponentCacheBehaviour for on-demand component caching. This approach optimizes performance by loading caching components only when needed.
 
 ```csharp
 using UnityComponentCache;
 
 public class ExampleBehaviour : LazyComponentCacheBehaviour
 {
-    private Animator _animator => GetCachedComponent<Animator>();
-    private Rigidbody _rigidbody => GetCachedComponent<Rigidbody>();
-
-    void Update()
-    {
-        // Use animator and _rigidbody without GetComponent.
-    }
+    Animator _animator => GetCachedComponent<Animator>();
+    Rigidbody _rigidbody => GetCachedComponent<Rigidbody>();
 }
 ```
 
@@ -157,18 +132,27 @@ using UnityComponentCache;
 
 public class ExampleBehaviour : LazyComponentCacheBehaviour
 {
-    void Update()
+    void Foo()
     {
         var animator = GetCachedComponent<Animator>();
         var rigidbody = GetCachedComponent<Rigidbody>();
-        // Use animator and _rigidbody without GetComponent.
+        // Use components at ease without worring performance.
     }
 }
 ```
 
-### **Additional Reminder**
+# Installation and Setup
 
-#### Using [RequireComponent] Attribute:
+In your Unity project, go to 'Window -> Package Manager'.
+Add Package from Git URL:
+
+   ```csharp
+   https://github.com/RockyHong/UnityComponentCache.git
+   ```
+
+# **Additional Reminder**
+
+### Using [RequireComponent] Attribute:
 
 Consider pairing [RequireComponent] with Component Cache for optimal component management. It's a helpful strategy to ensure necessary components are always included, enhancing the effectiveness of the caching mechanism.
 
@@ -178,10 +162,10 @@ Consider pairing [RequireComponent] with Component Cache for optimal component m
 public class ExampleBehaviour : MonoBehaviour
 {
     [ComponentCache]
-    private Animator _animator;
+    Animator _animator;
 
     [ComponentCache]
-    private Rigidbody _rigidbody;
+    Rigidbody _rigidbody;
     // Implementation details...
 }
 ```
