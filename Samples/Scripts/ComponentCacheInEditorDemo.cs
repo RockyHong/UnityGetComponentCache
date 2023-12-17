@@ -4,7 +4,6 @@ using UnityEngine.Serialization;
 
 public class ComponentCacheInEditorDemo : MonoBehaviour
 {
-  
     // Don't forget to publicize the fields you want to cache, or serialize them
     // and mark them with the [UnityComponentCache] attribute
     
