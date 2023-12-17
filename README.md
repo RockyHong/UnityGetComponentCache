@@ -75,7 +75,7 @@ In your Unity project, open 'Window -> Package Manager', and add a Package from 
 https://github.com/RockyHong/UnityGetComponentCache.git
 ```
 
-## **Usage Method 1. One-Time Caching:**:
+## **Usage Method 1. One-Time Caching**:
 
 Use the [GetComponentCache] attribute to mark fields for caching. Initialize these caches in a one-time method like 'Awake'. This ensures no initialization is missed even when new fields are added.
 
