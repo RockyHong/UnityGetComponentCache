@@ -64,7 +64,7 @@ RigidBody rigidbody
 }
 ```
 
-# 使用 Unity Component Cache：
+# 使用 Unity Get Component Cache：
 
 ## **安裝**：
 
@@ -99,7 +99,7 @@ public class ExampleBehaviour : MonoBehaviour
 
 ## **使用方法 2. 編輯器中預先取值**：
 
-- 在 GameObject 的檢視介面 (Inspector) 中點擊 'Initialize Unity Component Caches'按鈕，可以將所有標記 [GetComponentCache] 且可取用的欄位進行預先 GetComponent 並填入值，簡化運行前的設置。
+- 在 GameObject 的檢視介面 (Inspector) 中點擊 'Initialize Get Component Caches'按鈕，可以將所有標記 [GetComponentCache] 且可取用的欄位進行預先 GetComponent 並填入值，簡化運行前的設置。
 
 ```csharp
 using UnityGetComponentCache;
