@@ -1,0 +1,20 @@
+{
+    "name": "UnityComponentCache",
+    "rootNamespace": "",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.rockyhong.unitycomponentcache",
+            "expression": "",
+            "define": ""
+        }
+    ],
+    "noEngineReferences": false
+}
