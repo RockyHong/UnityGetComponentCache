@@ -1,6 +1,6 @@
 {
   "name": "com.rockyhong.unitycomponentcache",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "displayName": "Unity Component Cache",
   "description": "A Unity package to simplify component reference caching using custom attributes.",
   "unity": "2019.1",
@@ -17,5 +17,12 @@
     "name": "Rocky Hong",
     "email": "contact@rockyhong.com",
     "url": "www.rockyhong.com"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Unity Component Cache Samples",
+      "description": "Sample scene demonstrating the usage of Unity Component Cache.",
+      "path": "Samples~/UnityGetComponentCacheSamples"
+    }
+  ]
 }
