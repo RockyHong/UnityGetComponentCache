@@ -1,4 +1,5 @@
 [English](https://github.com/RockyHong/UnityGetComponentCache/blob/main/README.md) | 繁體中文
+
 # Unity Get Component Cache 簡介
 
 **Unity Get Component Cache** 旨在解決與優化 Unity 有效存取 Component 的需求。
@@ -99,7 +100,7 @@ public class ExampleBehaviour : MonoBehaviour
 
 ## **使用方法 2. 編輯器中預先取值**：
 
-- 在 GameObject 的檢視介面 (Inspector) 中點擊 'Initialize Get Component Caches' 按鈕，可以將所有標記 [GetComponentCache] 且可取用的欄位進行預先 GetComponent 並填入值，簡化運行前的設置。
+- 在 GameObject 的檢視介面 (Inspector) 中點擊 'Get Component Caches' 按鈕，可以將所有標記 [GetComponentCache] 且可取用的欄位進行預先 GetComponent 並填入值，簡化運行前的設置。
 
 ```csharp
 using UnityGetComponentCache;
@@ -114,6 +115,7 @@ public class ExampleBehaviour : MonoBehaviour
     private Rigidbody _rigidbody; // 可序列化的私有欄位.
 }
 ```
+
 ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/1333920a-124e-4c2e-b977-5cfbe36743af) ➜ ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/35b8bf85-765b-4366-b823-d7eca00f09d0)
 
 - **'Initialize Get Component Caches'按鈕狀態**：

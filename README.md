@@ -101,7 +101,7 @@ public class ExampleBehaviour : MonoBehaviour
 ## **Usage 2. Editor Pre-Configuration**:
 
 - Mark public fields or serializable private fields with [GetComponentCache].
-- Use the 'Initialize Get Component Caches' button in the GameObject Inspector to pre-fill values, simplifying pre-run setup.
+- Use the 'Get Component Caches' button in the GameObject Inspector to pre-fill values, simplifying pre-run setup.
 
 ```csharp
 using UnityGetComponentCache;

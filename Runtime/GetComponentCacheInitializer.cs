@@ -6,6 +6,10 @@ namespace UnityGetComponentCache
 {
     public static class GetComponentCacheInitializer
     {
+        /// <summary>
+        /// Initialize all component caches in the given MonoBehaviour.
+        /// Call this method in 'Awake()', 'Start()' or any other method that is called before the first usage of the cached component.
+        /// </summary>
         public static void InitializeCaches(MonoBehaviour monoBehaviour)
         {
             var fields = monoBehaviour.GetType()

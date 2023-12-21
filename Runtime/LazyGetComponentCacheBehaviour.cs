@@ -7,6 +7,10 @@ namespace UnityGetComponentCache
     {
         private Dictionary<System.Type, Component> componentCaches = new Dictionary<System.Type, Component>();
 
+        /// <summary>
+        /// Use this method to get a component from the cache.
+        /// If the component is not cached, it will be retrieved from the 'GetComponent' method and cached.
+        /// If it is not found on the game object, null will be returned.
         public T GetComponentCache<T>() where T : Component
         {
             System.Type type = typeof(T);

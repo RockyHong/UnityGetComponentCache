@@ -1,4 +1,3 @@
-#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -58,7 +57,7 @@ namespace UnityGetComponentCache
                     GUI.backgroundColor = Color.red;
                 }
 
-                string btnText = "Initialize Get Component Caches";
+                string btnText = "Get Component Caches";
                 if (isDirty) btnText += "*";
 
                 if (GUILayout.Button(btnText))
@@ -72,4 +71,3 @@ namespace UnityGetComponentCache
         }
     }
 }
-#endif
