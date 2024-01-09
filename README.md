@@ -127,15 +127,15 @@ public class ExampleBehaviour : MonoBehaviour
 
 ## **Usage 3. Runtime Lazy Caching**:
 
-Inherit from 'LazyGetComponentCacheBehaviour' to use 'GetComponentCache<T>' for component retrieval. It automatically performs 'GetComponent' and caching when necessary.
+Utilize GetComponentCache<T> for efficient component retrieval. This extension method streamlines component access by caching them on first use. Ensure to prefix the method with this as it's an extension method.
 
 ```csharp
 using UnityGetComponentCache;
 
-public class ExampleBehaviour : LazyGetComponentCacheBehaviour
+public class ExampleBehaviour : MonoBehaviour
 {
-    Animator _animator => GetComponentCache<Animator>();
-    Rigidbody _rigidbody => GetComponentCache<Rigidbody>();
+    Animator _animator => this.GetComponentCache<Animator>();
+    Rigidbody _rigidbody => this.GetComponentCache<Rigidbody>();
 }
 ```
 
@@ -144,13 +144,13 @@ or
 ```csharp
 using UnityGetComponentCache;
 
-public class ExampleBehaviour : LazyGetComponentCacheBehaviour
+public class ExampleBehaviour : Monobehaviour
 {
     void Foo()
     {
-        var animator = GetComponentCache<Animator>();
-        var rigidbody = GetComponentCache<Rigidbody>();
-        // Use components at ease without worring performance.
+        var animator = this.GetComponentCache<Animator>();
+        var rigidbody = this.GetComponentCache<Rigidbody>();
+        // Perform operations with cached values...
     }
 }
 ```

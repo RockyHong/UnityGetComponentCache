@@ -1,17 +1,16 @@
-using UnityGetComponentCache;
 using UnityEngine;
 
 namespace UnityGetComponentCache.Samples
 {
-    public class RuntimeLazyCachingSample : LazyGetComponentCacheBehaviour
+    public class RuntimeLazyCachingSample : MonoBehaviour
     {
-        private Transform cachedTransform => GetComponentCache<Transform>();
-        private TextMesh cachedTextMesh => GetComponentCache<TextMesh>();
-    
+        private Transform cachedTransform => this.GetComponentCache<Transform>();
+        private TextMesh cachedTextMesh => this.GetComponentCache<TextMesh>();
+
         private void Update()
         {
             float someValue = Mathf.Sin(Time.time);
-        
+
             // Demo: Do something with the cached transform
             var position = cachedTransform.position;
             Vector3 somePosition = new Vector3(someValue, position.y, position.z);
@@ -20,7 +19,7 @@ namespace UnityGetComponentCache.Samples
 
             // Demo: Do something with the cached text mesh
             cachedTextMesh.text = $"{name} : {someValue:F2}";
-            cachedTextMesh.color=Color.Lerp(Color.red, Color.blue, someValue);
+            cachedTextMesh.color = Color.Lerp(Color.red, Color.blue, someValue);
         }
     }
-}    
+}

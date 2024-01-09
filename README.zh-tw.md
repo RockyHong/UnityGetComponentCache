@@ -126,15 +126,15 @@ public class ExampleBehaviour : MonoBehaviour
 
 ## **使用方法 3. Runtime 延時快取**：
 
-繼承 LazyGetComponentCacheBehaviour，便可以使用 'GetComponentCache<T>' 來取得 Component。它將會自動在必要的時候進行 GetComponent 與快取。
+使用 GetComponentCache<T> 來有效地取得元件。這個擴充方法透過首次使用時的快取，來簡化元件存取。使用時需在方法前加上 this，因為它是一個擴充方法。
 
 ```csharp
 using UnityGetComponentCache;
 
-public class ExampleBehaviour : LazyGetComponentCacheBehaviour
+public class ExampleBehaviour : MonoBehaviour
 {
-    Animator _animator => GetComponentCache<Animator>();
-    Rigidbody _rigidbody => GetComponentCache<Rigidbody>();
+    Animator _animator => this.GetComponentCache<Animator>();
+    Rigidbody _rigidbody => this.GetComponentCache<Rigidbody>();
 }
 ```
 
@@ -143,13 +143,13 @@ public class ExampleBehaviour : LazyGetComponentCacheBehaviour
 ```csharp
 using UnityGetComponentCache;
 
-public class ExampleBehaviour : LazyGetComponentCacheBehaviour
+public class ExampleBehaviour : MonoBehaviour
 {
     void Foo()
     {
-        var animator = GetComponentCache<Animator>();
-        var rigidbody = GetComponentCache<Rigidbody>();
-        // 隨意使用 Component 而不用擔心效能問題。
+        var animator = this.GetComponentCache<Animator>();
+        var rigidbody = this.GetComponentCache<Rigidbody>();
+        // 對快取的值進行操作...
     }
 }
 ```
