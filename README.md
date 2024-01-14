@@ -101,7 +101,7 @@ public class ExampleBehaviour : MonoBehaviour
 ## **Usage 2. Editor Pre-Configuration**:
 
 - Mark public fields or serializable private fields with [GetComponentCache].
-- Use the 'Get Component Caches' button in the GameObject Inspector to pre-fill values, simplifying pre-run setup.
+- Use the 'GetComponent' button in the Inspector to pre-fill values, simplifying pre-run setup.
 
 ```csharp
 using UnityGetComponentCache;
@@ -119,11 +119,9 @@ public class ExampleBehaviour : MonoBehaviour
 
 ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/1333920a-124e-4c2e-b977-5cfbe36743af) ➜ ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/35b8bf85-765b-4366-b823-d7eca00f09d0)
 
-- **Initialize Get Component Caches' button status**:
-  - **Green**: All [GetComponentCache] fields (public or with [SerializeField]) are cached and non-null.
-  - **Yellow**: Some [GetComponentCache] fields are null.
-  - **Red**: All [GetComponentCache] fields are null.
-  - **\***: Indicates unsaved changes.
+- **'Get' button status**:
+  - **Green**: field is cached and non-null.
+  - **Yellow**: field is null.
 
 ## **Usage 3. Runtime Lazy Caching**:
 

@@ -1,73 +1,68 @@
-using UnityEditor;
 using UnityEngine;
+using UnityEditor;
+using System.Reflection;
 
 namespace UnityGetComponentCache
 {
-    [CustomEditor(typeof(MonoBehaviour), true)]
-    public class UnityGetComponentCacheEditor : Editor
+    [CustomPropertyDrawer(typeof(GetComponentCacheAttribute))]
+    public class GetComponentCacheDrawer : PropertyDrawer
     {
-        public override void OnInspectorGUI()
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            base.OnInspectorGUI();
+            EditorGUI.BeginProperty(position, label, property);
 
-            MonoBehaviour monoBehaviour = (MonoBehaviour)target;
-            bool isDirty = EditorUtility.IsDirty(target);
-            bool hasCacheableFields = false;
-            bool anyFieldIsNull = false;
-            bool allFieldsAreNull = true;
+            // Start checking for changes
+            EditorGUI.BeginChangeCheck();
 
-            var fields = monoBehaviour.GetType()
-                .GetFields(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance |
-                           System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+            // Calculate rects for the property field and the button
+            Rect propertyRect = new Rect(position.x, position.y, position.width - 60, position.height);
+            Rect buttonRect = new Rect(position.x + position.width - 50, position.y, 50, position.height);
 
-            foreach (var field in fields)
+            // Draw the property field
+            EditorGUI.PropertyField(propertyRect, property, label);
+
+            var component = property.serializedObject.targetObject as Component;
+            var fieldType = fieldInfo.FieldType;
+            bool isFieldNull = CheckIfFieldIsNull(component, fieldInfo);
+
+            // Determine button color
+            GUI.backgroundColor = isFieldNull ? Color.yellow : Color.green;
+
+            // Draw the button and handle its click
+            if (GUI.Button(buttonRect, "Get"))
             {
-                if (field.GetCustomAttributes(typeof(GetComponentCacheAttribute), true).Length > 0 &&
-                    (field.IsPublic || field.GetCustomAttributes(typeof(SerializeField), true).Length > 0))
+                if (isFieldNull && component != null)
                 {
-                    hasCacheableFields = true;
-
-                    var fieldValue = field.GetValue(monoBehaviour);
-                    if (fieldValue == null || (fieldValue is Component && fieldValue.Equals(null)))
+                    var newComponent = component.GetComponent(fieldType);
+                    if (newComponent != null)
                     {
-                        anyFieldIsNull = true;
-                    }
-                    else
-                    {
-                        allFieldsAreNull = false;
+                        fieldInfo.SetValue(component, newComponent);
+                        property.serializedObject.Update();
+                        EditorUtility.SetDirty(component); // Mark object as dirty
                     }
                 }
             }
 
-            if (hasCacheableFields)
+            // Reset the background color
+            GUI.backgroundColor = Color.white;
+
+            EditorGUI.EndProperty();
+        }
+        
+        private bool CheckIfFieldIsNull(Component component, FieldInfo field)
+        {
+            if (component == null) return true;
+
+            var value = field.GetValue(component);
+            if (value == null) return true;
+
+            // Special handling for Unity objects
+            if (value is UnityEngine.Object unityObject)
             {
-                Color defaultColor = GUI.backgroundColor;
-
-                if (!anyFieldIsNull)
-                {
-                    GUI.backgroundColor = Color.green; // All fields are not null and saved
-
-                }
-                else if (anyFieldIsNull && !allFieldsAreNull)
-                {
-                    GUI.backgroundColor = Color.yellow; // All fields are not null but not saved
-                }
-                else
-                {
-                    GUI.backgroundColor = Color.red;
-                }
-
-                string btnText = "Get Component Caches";
-                if (isDirty) btnText += "*";
-
-                if (GUILayout.Button(btnText))
-                {
-                    GetComponentCacheInitializer.InitializeCaches(monoBehaviour);
-                    EditorUtility.SetDirty(target);
-                }
-
-                GUI.backgroundColor = defaultColor;
+                return unityObject == null;
             }
+
+            return false;
         }
     }
 }

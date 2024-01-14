@@ -118,11 +118,9 @@ public class ExampleBehaviour : MonoBehaviour
 
 ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/1333920a-124e-4c2e-b977-5cfbe36743af) ➜ ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/35b8bf85-765b-4366-b823-d7eca00f09d0)
 
-- **'Initialize Get Component Caches'按鈕狀態**：
-  - **綠色**：所有被標記 [GetComponentCache] 欄位（公共或帶有[SerializeField]）都已快取且非 null。
-  - **黃色**：部分被標記 [GetComponentCache] 欄位為 null。
-  - **紅色**：所有被標記 [GetComponentCache] 欄位都為 null。
-  - **\***：表示有未儲存的更動。
+- **'Get' 按鈕狀態**：
+  - **綠色**：欄位已快取且非 null。
+  - **黃色**：欄位為 null。
 
 ## **使用方法 3. Runtime 延時快取**：
 
