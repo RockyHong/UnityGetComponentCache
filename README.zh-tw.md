@@ -116,7 +116,7 @@ public class ExampleBehaviour : MonoBehaviour
 }
 ```
 
-![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/1333920a-124e-4c2e-b977-5cfbe36743af) ➜ ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/35b8bf85-765b-4366-b823-d7eca00f09d0)
+![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/33115704-5ea0-4f16-bf94-1c585cae41cc) ➜ ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/1f0ad47f-9b6b-42ea-8d90-e1457c0e484c)
 
 - **'Get' 按鈕狀態**：
   - **一般色**：欄位非 null。
