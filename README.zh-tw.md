@@ -119,8 +119,8 @@ public class ExampleBehaviour : MonoBehaviour
 ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/1333920a-124e-4c2e-b977-5cfbe36743af) ➜ ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/35b8bf85-765b-4366-b823-d7eca00f09d0)
 
 - **'Get' 按鈕狀態**：
-  - **綠色**：欄位已快取且非 null。
-  - **黃色**：欄位為 null。
+  - **一般色**：欄位非 null。
+  - **紅色**：欄位為 null。
 
 ## **使用方法 3. Runtime 延時快取**：
 

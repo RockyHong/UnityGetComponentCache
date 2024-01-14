@@ -120,8 +120,8 @@ public class ExampleBehaviour : MonoBehaviour
 ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/1333920a-124e-4c2e-b977-5cfbe36743af) ➜ ![image](https://github.com/RockyHong/UnityGetComponentCache/assets/19500834/35b8bf85-765b-4366-b823-d7eca00f09d0)
 
 - **'Get' button status**:
-  - **Green**: field is cached and non-null.
-  - **Yellow**: field is null.
+  - **Normal**: field is non-null.
+  - **Red**: field is null.
 
 ## **Usage 3. Runtime Lazy Caching**:
 

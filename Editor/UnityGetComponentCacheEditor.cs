@@ -11,27 +11,24 @@ namespace UnityGetComponentCache
         {
             EditorGUI.BeginProperty(position, label, property);
 
-            // Start checking for changes
-            EditorGUI.BeginChangeCheck();
-
             // Calculate rects for the property field and the button
             Rect propertyRect = new Rect(position.x, position.y, position.width - 60, position.height);
             Rect buttonRect = new Rect(position.x + position.width - 50, position.y, 50, position.height);
-
-            // Draw the property field
-            EditorGUI.PropertyField(propertyRect, property, label);
 
             var component = property.serializedObject.targetObject as Component;
             var fieldType = fieldInfo.FieldType;
             bool isFieldNull = CheckIfFieldIsNull(component, fieldInfo);
 
-            // Determine button color
-            GUI.backgroundColor = isFieldNull ? Color.yellow : Color.green;
+            // Determine field color
+            GUI.backgroundColor = isFieldNull ? Color.red : Color.white;
 
+            // Draw the property field
+            EditorGUI.PropertyField(propertyRect, property, label);
+            
             // Draw the button and handle its click
             if (GUI.Button(buttonRect, "Get"))
             {
-                if (isFieldNull && component != null)
+                if (component != null)
                 {
                     var newComponent = component.GetComponent(fieldType);
                     if (newComponent != null)
